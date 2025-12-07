@@ -46,22 +46,27 @@ CLASSES = ["infractor", "no_infractor"]
 # ----------------------
 # MENÚ PRINCIPAL
 # ----------------------
-menu = st.sidebar.selectbox(
-    "📌 Navegación",
-    ["🏠 Inicio", "🔎 Análisis Normal", "🧾 Análisis para Cliente"]
-)
+opciones_menu = {
+    "🏠 Inicio": "inicio",
+    "🔎 Análisis Normal": "analisis_normal",
+    "🧾 Análisis para Cliente": "analisis_cliente"
+}
+
+seleccion = st.sidebar.selectbox("📌 Navegación", list(opciones_menu.keys()))
+menu = opciones_menu[seleccion]
+
 
 # ----------------------
 # INICIO
 # ----------------------
-if menu == "🏠 Inicio":
+if menu == "inicio":
     st.title("PrintSafeAI")
     st.write("Este sistema analiza imágenes para detectar contenido protegido (personajes, marcas, logos, fanarts), usado como filtro legal ANTES de proceder a la impresión de productos (polos, tazas, poleras).")
 
 # ----------------------
 # ANÁLISIS NORMAL (SIN CLIENTE)
 # ----------------------
-elif menu == "🔎 Análisis Normal":
+elif menu == "analisis_normal":
     st.title("Análisis IA - Modo Normal")
 
     uploaded = st.file_uploader("Sube una imagen", type=["jpg", "jpeg", "png"])
@@ -109,7 +114,7 @@ elif menu == "🔎 Análisis Normal":
 # ----------------------
 # ANÁLISIS PARA CLIENTES
 # ----------------------
-elif menu == "🧾 Análisis para Cliente":
+elif menu == "analisis_cliente":
     st.title("Registro + Análisis IA para Cliente")
 
     st.header("Datos del Cliente")
