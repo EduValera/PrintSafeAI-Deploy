@@ -61,7 +61,7 @@ menu = opciones_menu[seleccion]
 # ----------------------
 if menu == "inicio":
     st.title("PrintSafeAI")
-    st.write("Este sistema analiza imágenes para detectar contenido protegido (personajes, marcas, logos, fanarts), usado como filtro legal ANTES de proceder a la impresión de productos (polos, tazas, poleras).")
+    st.write("Este sistema analiza imágenes para detectar contenido protegido (personajes, marcas, logos, fanarts), usado como filtro antes de proceder a la impresión de productos (polos, tazas, poleras).")
 
 # ----------------------
 # ANÁLISIS NORMAL (SIN CLIENTE)
