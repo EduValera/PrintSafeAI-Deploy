@@ -5,17 +5,25 @@ from PIL import Image
 import mysql.connector
 import os
 from datetime import datetime
+from urllib.parse import urlparse
 
 # ----------------------
 # CONEXIÓN MYSQL
 # ----------------------
 def conexion_mysql():
+    db_url = os.getenv("MYSQL_URL")
+
+    if not db_url:
+        raise Exception("MYSQL_URL no está configurada en Railway.")
+
+    url = urlparse(db_url)
+
     return mysql.connector.connect(
-        host=os.getenv("MYSQLHOST"),
-        user=os.getenv("MYSQLUSER"),
-        password=os.getenv("MYSQLPASSWORD"),
-        database=os.getenv("MYSQLDATABASE"),
-        port=os.getenv("MYSQLPORT")
+        host=url.hostname,
+        port=url.port,
+        user=url.username,
+        password=url.password,
+        database=url.path.replace("/", "")
     )
 
 # Test de conexión
